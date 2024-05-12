@@ -8,13 +8,18 @@ async function bootstrap() {
 
   const logger = new Logger('Bootstrap');
 
+  console.log(envs.natsSrevers);
+
+
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
-      transport: Transport.TCP,
+      transport: Transport.NATS,
       options: {
         // host: envs.host,
-        port: envs.port,
+        // port: envs.port,
+        // NATS solo pide los servers
+        servers: envs.natsSrevers,
       },
     }
   );
